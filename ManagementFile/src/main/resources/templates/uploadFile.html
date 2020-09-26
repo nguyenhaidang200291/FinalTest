@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<title>Registration</title>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<img th:src="@{/assets/images/FPT_New_Logo.png}"
+					class="navbar-brand" alt="Beer" /> <a class="navbar-brand"
+					href="#" th:href="@{/}">File Management</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<br>
+	<br>
+	
+	<div class="container">
+			<h3>Page Upload Files</h3>
+		<p>
+			Welcome <span sec:authentication="principal.username">User</span>
+		</p>
+		
+		
+		<div class="upload-container">
+			<div class="upload-header">
+				<h3>Upload File</h3>
+			</div>
+			<hr>
+			<div class="upload-content">
+				<div class="single-upload">
+					<h4>Upload Single File</h4>
+					<form id="singleUploadForm" name="singleUploadForm">
+						<input id="singleFileUploadInput" type="file" name="file"
+							class="file-input" required />
+						<button type="submit" class="primary submit-btn">Submit</button>
+					</form>
+					<div class="upload-response">
+						<div id="singleFileUploadError"></div>
+						<div id="singleFileUploadSuccess"></div>
+					</div>
+				</div>
+				<div class="multiple-upload">
+					<h4>Upload Multiple File</h4>
+					<form id="multipleUploadForm" name="multipleUploadForm">
+						<input id="multipleFileUploadInput" type="file" name="files"
+							class="file-input" multiple required />
+						<button type="submit" class="primary submit-btn">Submit</button>
+					</form>
+					<div class="upload-response">
+						<div id="multipleFileUploadError"></div>
+						<div id="multipleFileUploadSuccess"></div>
+					</div>
+				</div>
+			</div>
+			<hr>
+		
+		<a th:href = "@{/}"> Back to List File </a>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+	<script th:src="@{/assets/js/main.js}" ></script>
+</body>
+</html>
